@@ -1,9 +1,10 @@
 function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth) {
-  //console.log(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth);
+
   var saved = 0;
   var months = 0;
 
   while (startPriceOld + saved < startPriceNew) {
+    months++;
     if (months % 2 == 0 && months > 0) {
       percentLossByMonth += .5;
     }
@@ -12,7 +13,6 @@ function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMon
     startPriceOld = startPriceOld - oldCarPriceReduction;
     var newCarPriceReduction = startPriceNew * (percentLossByMonth / 100);
     startPriceNew = startPriceNew - newCarPriceReduction;
-    months++;
   }
 
   var leftover = Math.round((startPriceOld + saved) - startPriceNew);
