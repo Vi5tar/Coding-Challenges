@@ -1,0 +1,63 @@
+The Alpha version of freeCodeCamp React challenges I've been following:
+http://hysterical-amusement.surge.sh/
+
+React uses a syntax extension of JavaScript called JSX.
+JSX is not valid JavaScript, JSX code must be compiled into JavaScript.
+The transpiler Babel is a popular tool for this process.
+https://babeljs.io/repl/
+To put comments inside JSX, you use the syntax {/* */} to wrap around the comment text.
+
+These need to be imported to use React:
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+
+This is the syntax for a React Component:
+{ /* Creates the class */ }
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>My First React Component!</h1>
+        </div>
+      );
+  }
+};
+
+{ /* Renders "MyComponent" to the node "challenge-node" */ }
+ReactDOM.render(<MyComponent />, document.getElementById("challenge-node"));
+
+Properties can be added to components.
+const CurrentDate = (props) => {
+	return (
+		<div>
+			{ /* change code below this line */ }
+			<p>The current date is: {props.date}</p> { /* this is a property of "date" */ }
+			{ /* change code above this line */ }
+		</div>
+	);
+};
+
+class Calendar extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+				<h3>What date is it?</h3>
+				{ /* change code below this line */ }
+				<CurrentDate date={Date()}/> { */ here we defined the "date" property to equal
+                                     the current date using the javaScript function Date()
+                                     when this renders it will display:
+                                     The current date is: the current date set by the Date() function.
+                                     If we had done <CurrentDate date="9.19.17" />
+                                     it would display:
+                                     The current date is: 9.19.17 */ }
+				{ /* change code above this line */ }
+			</div>
+		);
+	}
+};
