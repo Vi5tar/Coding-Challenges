@@ -1,0 +1,20 @@
+const goatBeard = (
+  <div>
+    <h1>Fear the Beard!</h1>
+    <p> the p man</p>
+  </div>
+);
+
+const beardTarget = document.getElementById("chin");
+
+ReactDOM.render(goatBeard, beardTarget);
+
+const JSX = (
+<div>
+	<h1>Hello World</h1>
+	<p>Lets render this to the DOM</p>
+</div>
+);
+// change code below this line
+{/*const wootTime = document.getElementById("challenge-node");*/}
+ReactDOM.render(JSX, document.getElementById("challenge-node"));
