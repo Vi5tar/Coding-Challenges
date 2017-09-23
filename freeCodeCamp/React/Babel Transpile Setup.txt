@@ -1,0 +1,73 @@
+This guide is designed to get the language-babel package for Atom setup to transpile
+JSX into a .js file. Example: Writing React with JSX syntax.
+
+4 things are needed at the project's root:
+  package.json file
+  .babelrc file
+  .languagebabel file
+  node_modules folder
+
+Creating the package.json file:
+  CD to the projects directory
+  Execute npm init
+  Follow the prompts
+  A package.json file will be created in the projects directory
+
+  Alternatively:
+    Create a new file called package.json
+    Inside the file setup something like this:
+    {
+      "name": "markdown-previewer",
+      "version": "1.0.0",
+      "description": "Language Babel Example",
+      "license": "MIT",
+      "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.0.20",
+        "babel-plugin-syntax-flow": "^6.0.0",
+        "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+        "babel-preset-env": "^1.6.0",
+        "babel-preset-es2015": "^6.0.0",
+        "babel-preset-es2017": "^6.24.1",
+        "babel-preset-react": "^6.24.1"
+      }
+    }
+
+Creating the .babelrc file:
+  Create a new file called .babelrc
+  Inside the file setup something like this:
+  {
+   "only": [
+   "*.babel",
+   "*.jsx",
+   "*.es6"
+   ],
+   "presets": ["react"]
+  }
+
+Creating the .languagebabel file:
+  Create a new file called .languagebabel
+  Inside the file setup something like this:
+  {
+   "babelMapsPath": "",
+   "babelMapsAddUrl": false,
+   "babelSourcePath": "",
+   "babelTranspilePath": "",
+   "createMap": false,
+   "createTargetDirectories": false,
+   "createTranspiledCode": true,
+   "disableWhenNoBabelrcFileInPath": true,
+   "suppressSourcePathMessages": false,
+   "suppressTranspileOnSaveMessages": false,
+   "transpileOnSave": true
+  }
+
+Creating the node_modules folder:
+  CD to the project directory.
+  Exectue:
+    nmp install --save-dev babel-cli babel-preset-env babel-preset-react
+  In you .babelrc file:
+    "presets": ["react", "env"]
+
+Now an index.babel file can be created and when saved an index.js file will
+be transpiled and placed in the root of the project.
