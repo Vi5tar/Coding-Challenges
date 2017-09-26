@@ -65,7 +65,7 @@ Creating the .languagebabel file:
 Creating the node_modules folder:
   CD to the project directory.
   Exectue:
-    nmp install --save-dev babel-cli babel-preset-env babel-preset-react
+    npm install --save-dev babel-cli babel-preset-env babel-preset-react
   In you .babelrc file:
     "presets": ["react", "env"]
 
