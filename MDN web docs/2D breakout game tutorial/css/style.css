@@ -4,7 +4,7 @@
 }
 
 canvas {
-  background: #eee;
+  background: black; /* #eee */
   display: block;
   margin: 0 auto;
 }
