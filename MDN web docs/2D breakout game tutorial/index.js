@@ -22,7 +22,7 @@ function drawBall() {
 
 function drawPaddle() {
   ctx.beginPath();
-  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+  ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
   ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
@@ -34,14 +34,31 @@ function draw() {
   drawPaddle();
   x += dx;
   y += dy;
+  //bounces off the left and right walls
   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
     dx = -dx;
     ballColor = randomColor();
   }
-  if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+  //bounces off the top wall
+  if (y + dy < ballRadius) {
     dy = -dy;
     ballColor = randomColor();
+  //bounces off the paddle && speeds up the ball
+  } else if (y + dy > canvas.height - ballRadius - paddleHeight && x > paddleX && x < paddleX + paddleWidth) {
+    dy++;
+    if (dx < 0) {
+      dx--;
+    } else {
+      dx++;
+    }
+    dy = -dy;
+    ballColor = randomColor();
+  //misses paddle. Game is over
+  } else if (y - dy > canvas.height - ballRadius) {
+    alert("GAME OVER");
+    document.location.reload();
   }
+  //moves paddle left or right
   if (rightPressed && paddleX < canvas.width - paddleWidth) {
     paddleX += 7;
   } else if (leftPressed && paddleX > 0) {
