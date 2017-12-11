@@ -11,6 +11,24 @@ var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
+var brickRowCount = 3;
+var brickColumnCount = 6;
+var brickWidth = 60;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 35;
+var bricks = [];
+
+for (c = 0; c < brickColumnCount; c++) {
+  bricks[c] = [];
+  for (r = 0; r < brickRowCount; r++) {
+    bricks[c][r] = {
+      x: 0,
+      y: 0
+    };
+  }
+}
 
 function drawBall() {
   ctx.beginPath();
@@ -28,8 +46,25 @@ function drawPaddle() {
   ctx.closePath();
 }
 
+function drawBricks() {
+  for (c = 0; c < brickColumnCount; c++) {
+    for (r = 0; r < brickRowCount; r++) {
+      var brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+      var brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+      bricks[c][r].x = brickX;
+      bricks[c][r].y = brickY;
+      ctx.beginPath();
+      ctx.rect(brickX, brickY, brickWidth, brickHeight);
+      ctx.fillStyle = "#0095DD";
+      ctx.fill();
+      ctx.closePath();
+    }
+  }
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBricks();
   drawBall();
   drawPaddle();
   x += dx;
@@ -43,7 +78,7 @@ function draw() {
   if (y + dy < ballRadius) {
     dy = -dy;
     ballColor = randomColor();
-  //bounces off the paddle && speeds up the ball
+    //bounces off the paddle && speeds up the ball
   } else if (y + dy > canvas.height - ballRadius - paddleHeight && x > paddleX && x < paddleX + paddleWidth) {
     dy++;
     if (dx < 0) {
@@ -53,7 +88,7 @@ function draw() {
     }
     dy = -dy;
     ballColor = randomColor();
-  //misses paddle. Game is over
+    //misses paddle. Game is over
   } else if (y - dy > canvas.height - ballRadius) {
     alert("GAME OVER");
     document.location.reload();
